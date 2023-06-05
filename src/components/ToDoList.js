@@ -31,20 +31,26 @@ const ToDoList = () => {
         setTask('')
     }
 
+    const handleRemoveTask = index => {
+        const newTodos = [...todos]
+        newTodos.splice(index, 1)
+        setTodos(newTodos)
+    }
+
     return(
         <div>
             <h1>Todo List</h1>
             <form onSubmit={handleSubmit}>
-                Add Task : <input 
+                Add Task : <input
                     value={task}
-                    placeholder="Add New Task" 
+                    placeholder="Add New Task"
                     onChange={handleNewTask}
                 />
                 <button type="submit">Add</button>
             </form>
             <ul>
                 { todos.map((todo, index) => (
-                    <li key={ index} >{ todo.task} </li>
+                    <li key={ index } >{ todo.task} <span onClick={ () => handleRemoveTask(index) }>X</span></li>
                 ))}
             </ul>
         </div>
